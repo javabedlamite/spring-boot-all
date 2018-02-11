@@ -7,25 +7,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Netty WebSocket</title>
 <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/css/chat.css" rel="stylesheet">
+<link href="/static/css/chat.css" rel="stylesheet">
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/resources/js/jquery-1.7.2.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.2.min.js"><\/script>')</script>
 <!--[if lt IE 9]>
   <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <!--[if lt IE 7]>
-<script src="/resources/js/IE7.js" type="text/javascript"></script>
+<script src="/static/js/IE7.js" type="text/javascript"></script>
 <![endif]-->
 <!--[if IE 6]>
-<script src="/resources/js/iepng.js" type="text/javascript"></script>
+<script src="/static/js/iepng.js" type="text/javascript"></script>
 <script type="text/javascript">
 EvPNG.fix('body, div, ul, img, li, input, a, span ,label'); 
 </script>
 <![endif]-->
 
-<script src="/resources/js/chat.js"></script>
+<script src="/static/js/chat.js"></script>
 </head>
 
 <body class="keBody">
