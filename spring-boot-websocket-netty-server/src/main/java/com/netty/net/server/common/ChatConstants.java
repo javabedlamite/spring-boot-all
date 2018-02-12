@@ -1,5 +1,6 @@
 package com.netty.net.server.common;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,13 +26,17 @@ public class ChatConstants {
 		}
 	}
 
-	private static char[] prefix = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R',
-			'S', 'T', 'U', 'V', 'W', 'X', 'Y' };
-	private static int[] imgPrefix = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+	private static char[] prefix = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+	        'W', 'X', 'Y' };
+	private static Map<String, String> headImgMaps = new HashMap<String, String>();
 
-	public static String headImg() {
-		int index = RandomUtils.nextInt(0, imgPrefix.length);
-		return "/static/img/head/" + imgPrefix[index] + ".jpg";
+	static {
+		headImgMaps.put("admin", "../img/head/1.jpg");
+		headImgMaps.put("terry", "../img/head/2.jpg");
+	}
+
+	public static String headImg(String username) {
+		return headImgMaps.get(username);
 	}
 
 	public static String code() {

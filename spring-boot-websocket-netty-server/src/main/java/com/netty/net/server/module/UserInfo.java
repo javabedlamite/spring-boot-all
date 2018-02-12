@@ -26,7 +26,7 @@ public class UserInfo implements Serializable {
 
 	public UserInfo(String username) {
 		this.username = username;
-		this.headImg = ChatConstants.headImg();
+		this.headImg = ChatConstants.headImg(username);
 		this.code = ChatConstants.code();
 		this.id = System.currentTimeMillis();
 	}

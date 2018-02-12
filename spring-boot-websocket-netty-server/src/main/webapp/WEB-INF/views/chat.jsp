@@ -19,6 +19,7 @@
         <div class="context">
             <div class="conLeft">
                 <ul>
+                    <!-- 
                     <li>
                         <div class="liLeft">
                             <img src="../img/20170926103645_04.jpg">
@@ -36,7 +37,7 @@
                             <span class="intername">赵鹏</span>
                             <span class="infor">[流泪]</span>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="conRight">
@@ -119,6 +120,7 @@
     <script type="text/javascript" src="../js/chat.js"></script>
 
     <input type="hidden" id="Token" value="${token}">
+    <input type="hidden" id="headImg" value="${headImg}">
     <input type="hidden" id="curName" value="${curName}">
 
 </body>
