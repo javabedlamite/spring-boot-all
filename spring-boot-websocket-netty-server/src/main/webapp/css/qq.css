@@ -139,7 +139,7 @@ display: -webkit-box;
 	height: 44px;
 	border-radius: 50%;
 	margin-left:15px ;
-	float: left;
+	float: right;
 }
 .nesHead img{
 	width: 44px;
@@ -157,7 +157,7 @@ display: -webkit-box;
 	border-radius:10px;
 	margin-left: 10px;
 	position: relative;
-	float: left;
+	float: right;
 }
 .news .jiao{
 	position: absolute;
@@ -174,7 +174,7 @@ display: -webkit-box;
 	height: 44px;
 	border-radius: 50%;
 	margin-left:15px ;
-	float: right;
+	float: left;
 }
 .answerHead img{
 	width: 44px;
@@ -192,7 +192,7 @@ display: -webkit-box;
 	border-radius:10px;
 	margin-left: 10px;
 	position: relative;
-	float: right;
+	float: left;
 }
 .answers .jiao{
 	position: absolute;

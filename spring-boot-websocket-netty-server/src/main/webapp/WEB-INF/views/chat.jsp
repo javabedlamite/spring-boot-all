@@ -5,7 +5,28 @@
 <title>IMQQ</title>
 
 <link rel="stylesheet" type="text/css" href="../css/qq.css">
+<style>
+#editDiv {
+	width: 100px;
+	display: inline-block;
+	height: 100px;
+	background: #fff;
+	border-radius: 10px;
+	line-height: 20px;
+	padding: 10px;
+	font-size: 14px;
+	color: #666;
+	resize: none;
+	outline: none;
+	overflow-y: scroll;
+}
 
+#editDiv {
+	border: 1px solid #333;
+	border-color: rgba(169, 169, 169, 1);
+	text-align: left;
+}
+</style>
 </head>
 <body>
 
@@ -19,6 +40,7 @@
         <div class="context">
             <div class="conLeft">
                 <ul>
+                    <!-- 
                     <li>
                         <div class="liLeft">
                             <img src="../img/20170926103645_04.jpg">
@@ -36,7 +58,7 @@
                             <span class="intername">赵鹏</span>
                             <span class="infor">[流泪]</span>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="conRight">
@@ -107,7 +129,10 @@
                         </ul>
                     </div>
                     <div class="inputBox">
+                        <!-- 
                         <textarea id="dope" style="width: 99%; height: 75px; border: none; outline: none;" name="" rows="" cols=""></textarea>
+                         -->
+                        <div id="dope" style="width: 99%; height: 75px; border: none; outline: none;" contenteditable="true"><label id="cnt"/></div>
                         <button class="sendBtn">发送(s)</button>
                     </div>
                 </div>
@@ -119,7 +144,9 @@
     <script type="text/javascript" src="../js/chat.js"></script>
 
     <input type="hidden" id="Token" value="${token}">
+    <input type="hidden" id="headImg" value="${headImg}">
     <input type="hidden" id="curName" value="${curName}">
+
 
 </body>
 </html>
