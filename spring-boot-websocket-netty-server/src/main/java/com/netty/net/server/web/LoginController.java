@@ -13,9 +13,9 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = { "","/","/login" }, method = RequestMethod.GET)
-	public String login() {
-		return "login.jsp";
+	@RequestMapping(value = { "", "/", "login" }, method = RequestMethod.GET)
+	public String index() {
+		return "index.jsp";
 	}
 
 }
