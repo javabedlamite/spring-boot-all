@@ -13,7 +13,7 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = { "", "/", "index" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "", "/", "login" }, method = RequestMethod.GET)
 	public String index() {
 		return "index.jsp";
 	}
@@ -24,7 +24,7 @@ public class LoginController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "home", method = RequestMethod.POST)
 	public String doLogin(UserInfo user) {
 		UserInfo.map.put(user.getPhone(), user);
 		return "redirect:/chat/list?token=" + user.getPhone();

@@ -76,7 +76,7 @@ body {
 <body>
     <div class="container">
 
-        <form class="form-signin" action="/login" method="post">
+        <form class="form-signin" action="/home" method="post">
             <h2 class="form-signin-heading">宇宙第一IM</h2>
             </br>
             <label for="inputPwd" class="sr-only">电话</label>
@@ -91,6 +91,8 @@ body {
                 </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">登 录</button>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            
         </form>
 
     </div>
