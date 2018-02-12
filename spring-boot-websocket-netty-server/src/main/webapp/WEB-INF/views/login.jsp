@@ -80,7 +80,7 @@ body {
             <h2 class="form-signin-heading">宇宙第一IM</h2>
             </br>
             <label for="inputPwd" class="sr-only">电话</label>
-            <input type="text" id="inputPwd" class="form-control" placeholder="电话" name="phone" required autofocus>
+            <input type="text" id="inputPwd" class="form-control" placeholder="电话" name="username" required autofocus>
             <label for="inputPassword" class="sr-only">密码</label>
             </br>
             <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password" required>
@@ -91,6 +91,8 @@ body {
                 </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">登 录</button>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            
         </form>
 
     </div>

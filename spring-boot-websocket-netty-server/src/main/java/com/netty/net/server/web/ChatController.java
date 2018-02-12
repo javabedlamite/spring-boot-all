@@ -21,17 +21,17 @@ public class ChatController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String talk(String token, Model model) {
 		model.addAttribute("token", token);
-		return "chat2.jsp";
+		return "chat.jsp";
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "users", method = RequestMethod.GET, produces={"application/json; charset=UTF-8", "text/plain"})
+	@RequestMapping(value = "users", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8", "text/plain" })
 	public String users(String token) {
 		Map<String, UserInfo> onlines = ChatConstants.onlines;
 		UserInfo cur = onlines.get(token);
-		
-		Map<String, Object> map = new HashMap<>(2);	
-		map.put("curName", cur!=null?cur.getCode():"");
+
+		Map<String, Object> map = new HashMap<>(2);
+		map.put("curName", cur != null ? cur.getCode() : "");
 		map.put("users", onlines);
 		return JSON.toJSONString(map);
 	}
