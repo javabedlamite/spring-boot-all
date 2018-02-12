@@ -13,9 +13,29 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
+<<<<<<< HEAD
 	@RequestMapping(value = { "","/","/login" }, method = RequestMethod.GET)
 	public String login() {
 		return "login.jsp";
+=======
+	@RequestMapping(value = { "", "/", "login" }, method = RequestMethod.GET)
+	public String index() {
+		return "index.jsp";
+>>>>>>> branch 'master' of https://github.com/javabedlamite/spring-boot-all
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * 用户登录
+	 * 
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "home", method = RequestMethod.POST)
+	public String doLogin(UserInfo user) {
+		UserInfo.map.put(user.getPhone(), user);
+		return "redirect:/chat/list?token=" + user.getPhone();
+	}
+>>>>>>> branch 'master' of https://github.com/javabedlamite/spring-boot-all
 }
