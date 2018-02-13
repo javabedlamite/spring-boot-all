@@ -4,29 +4,9 @@
 <meta charset="UTF-8">
 <title>IMQQ</title>
 
-<link rel="stylesheet" type="text/css" href="../css/qq.css">
-<style>
-#editDiv {
-	width: 100px;
-	display: inline-block;
-	height: 100px;
-	background: #fff;
-	border-radius: 10px;
-	line-height: 20px;
-	padding: 10px;
-	font-size: 14px;
-	color: #666;
-	resize: none;
-	outline: none;
-	overflow-y: scroll;
-}
+<link rel="stylesheet" type="text/css" href="../css/qq.css" />
+<link rel="stylesheet" type="text/css" href="../css/photo-panel.css" />
 
-#editDiv {
-	border: 1px solid #333;
-	border-color: rgba(169, 169, 169, 1);
-	text-align: left;
-}
-</style>
 </head>
 <body>
 
@@ -90,13 +70,7 @@
                     <div class="emjon">
                         <ul>
                             <li>
-                                <img src="../img/emo_02.gif">
-                            </li>
-                            <li>
-                                <img src="../img/emo_05.gif">
-                            </li>
-                            <li>
-                                <img src="../img/emo_07.gif">
+                                <img src="../img/emo/emo_02.gif">
                             </li>
                         </ul>
                     </div>
@@ -132,7 +106,7 @@
                         <!-- 
                         <textarea id="dope" style="width: 99%; height: 75px; border: none; outline: none;" name="" rows="" cols=""></textarea>
                          -->
-                        <div id="dope" style="width: 99%; height: 75px; border: none; outline: none;" contenteditable="true"><label id="cnt"/></div>
+                        <div id="dope" style="width: 99%; height: 75px; border: none; outline: none;" contenteditable="true"></div>
                         <button class="sendBtn">发送(s)</button>
                     </div>
                 </div>
@@ -140,13 +114,32 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../js/chat.js"></script>
+    <div class="photo-mask"></div>
+    <div class="photo-panel">
+        <div class="photo-div">
+            <div class="photo-left">
+                <div class="arrow-prv"></div>
+            </div>
+            <div class="photo-img">
+                <div class="photo-bar">
+                    <div class="photo-close"></div>
+                </div>
+                <div class="photo-view-h">
+                    <img src="" />
+                </div>
+            </div>
+            <div class="photo-right">
+                <div class="arrow-next"></div>
+            </div>
+        </div>
+    </div>
 
     <input type="hidden" id="Token" value="${token}">
     <input type="hidden" id="headImg" value="${headImg}">
     <input type="hidden" id="curName" value="${curName}">
 
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/chat.js"></script>
 
 </body>
 </html>

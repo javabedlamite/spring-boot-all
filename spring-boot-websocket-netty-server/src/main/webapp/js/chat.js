@@ -1,6 +1,10 @@
 // 创建socket
 var websocket;
 
+var img_index = 0;
+var img_src = "";
+var img_ids = ".RightCont img:odd";
+
 $(document).ready(function() {
 
     function createWebsocket() {
@@ -30,14 +34,17 @@ $(document).ready(function() {
 		answers(obj);
 	    }
 	    initUsers();
-	    
-	    $.each($('.RightCont img'), function(key, obj) {
-	            if(obj.width==80 && obj.height==30){
-	        	obj.ondblclick = function() {
-				alert(this.src);
-			    }
-	            }
+
+	    $.each($(img_ids), function(i, obj) {
+		$(obj).on("dblclick", function() {
+		    $(".photo-mask").show();
+		    $(".photo-panel").show();
+		    img_src = $(this).attr("src");
+		    img_index = i;
+		    photoView($(this));
 		});
+	    });
+
 	};
 
 	websocket.onerror = function(event) {
@@ -52,6 +59,36 @@ $(document).ready(function() {
     createWebsocket();
     initEmjon();
 
+    // 计算居中位置
+    var mg_top = ((parseInt($(window).height()) - parseInt($(".photo-div").height())) / 2);
+
+    $(".photo-div").css({
+	"margin-top" : "" + mg_top + "px"
+    });
+    // 关闭
+    $(".photo-close").click(function() {
+	$(".photo-mask").hide();
+	$(".photo-panel").hide();
+    });
+    // 下一张
+    $(".photo-panel .photo-div .arrow-next").click(function() {
+	img_index++;
+	if (img_index >= $(img_ids).length) {
+	    img_index = 0;
+	}
+	img_src = $(img_ids).eq(img_index).attr("src");
+	photoView($(img_ids));
+    });
+    // 上一张
+    $(".photo-panel .photo-div .arrow-prv").click(function() {
+	img_index--;
+	if (img_index < 0) {
+	    img_index = $(img_ids).length - 1;
+	}
+	img_src = $(img_ids).eq(img_index).attr("src");
+	photoView($(img_ids));
+    });
+
 });
 
 /*******************************************************************************
@@ -63,7 +100,7 @@ function initEmjon() {
     var emjon = "";
     for (var i = 1; i <= 60; i++) {
 	var cnt = (i + '').length == 1 ? "0" + i : i;
-	emjon += '<li><img src="../img/emo_' + cnt + '.gif"></li>';
+	emjon += '<li><img src="../img/emo/emo_' + cnt + '.gif"></li>';
     }
     $('.emjon ul').html("").append(emjon);
     $('.emjon li').on(
@@ -98,10 +135,6 @@ function initUsers() {
     });
 }
 
-
-function refresh(data, msg) {
-}
-
 $('.sendBtn').on('click', send);
 
 function send() {
@@ -126,9 +159,6 @@ function answers(obj) {
     var answerstr = obj.message;
     answerstr = answerstr.replace('nesHead', 'answerHead');
     answerstr = answerstr.replace('news', 'answers');
-    // answerstr += '<li>' + '<div class="answerHead"><img src="' + cur.headImg
-    // + '"/></div>' + '<div class="answers">'
-    // + obj.message + '</div>' + '</li>';
     $('.newsList').append(answerstr);
     $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
 }
@@ -140,6 +170,17 @@ $('.ExP').on('mouseenter', function() {
 $('.emjon').on('mouseleave', function() {
     $('.emjon').hide();
 });
+
+// 自适应预览
+function photoView(obj) {
+    if ($(obj).width() >= $(obj).height()) {
+	$(".photo-panel .photo-div .photo-img .photo-view-h").attr("class", "photo-view-w");
+	$(".photo-panel .photo-div .photo-img .photo-view-w img").attr("src", img_src);
+    } else {
+	$(".photo-panel .photo-div .photo-img .photo-view-w").attr("class", "photo-view-h");
+	$(".photo-panel .photo-div .photo-img .photo-view-h img").attr("src", img_src);
+    }
+}
 
 // 监听Ctrl+Enter 发送消息
 document.onkeydown = function(event) {
@@ -173,18 +214,6 @@ document.querySelector('#dope').addEventListener(
 			return;
 		    }
 		    // blob 就是从剪切板获得的文件 可以进行上传或其他操作
-		    /*-----------------------与后台进行交互 start-----------------------*/
-		    /*
-		     * var data = new FormData(); data.append('discoverPics',
-		     * blob); $.ajax({ url: '/discover/addDiscoverPicjson.htm',
-		     * type: 'POST', cache: false, data: data, processData:
-		     * false, contentType: false, success:function(res){ var obj =
-		     * JSON.parse(res); var wrap = $('#editDiv'); var file =
-		     * obj.data.toString(); var img =
-		     * document.createElement("img"); img.src = file;
-		     * wrap.appendChild(img); },error:function(){ } })
-		     */
-		    /*-----------------------与后台进行交互 end-----------------------*/
 		    /*-----------------------不与后台进行交互 直接预览start-----------------------*/
 		    var reader = new FileReader();
 		    var imgs = new Image(80, 30);
@@ -195,10 +224,15 @@ document.querySelector('#dope').addEventListener(
 			};
 		    })(imgs);
 		    reader.readAsDataURL(blob);
-		    imgs.ondblclick = function() {
-			alert(this.src);
-		    }
-		    document.querySelector('#cnt').append(imgs);
+
+		    $(imgs).on("dblclick", function() {
+			$(".photo-mask").show();
+			$(".photo-panel").show();
+			img_src = $(this).attr("src");
+			photoView($(this));
+		    });
+
+		    document.querySelector('#dope').append(imgs);
 		    /*-----------------------不与后台进行交互 直接预览end-----------------------*/
 		}
 	    }
