@@ -24,7 +24,7 @@ $(document).ready(function() {
 	    if (!obj || obj == undefined) {
 		return false;
 	    }
-	    // var users = obj.to;
+	    
 	    var cur = obj.from;
 	    if (!!obj.message && cur.username != token) {// 如果空消息不予处理
 		console.log("cur.username: " + cur.username + ",obj.message:" + obj.message);
@@ -39,6 +39,7 @@ $(document).ready(function() {
 			    }
 	            }
 		});
+
 	};
 
 	websocket.onerror = function(event) {
@@ -86,10 +87,43 @@ function initUsers() {
     var token = $('#Token').val();
     $.get("/chat/users?token=" + token, function(result) {
 	$('#curName').html(result.curName);
+
 	var userList = "";
 	$.each(result.users, function(key, obj) {
 	    if (token == obj.username) {
 		$('#headImg').val(obj.headImg);
+
+	var h = "";
+	$.each(result.users, function(key, obj) {
+	    if (token == obj.username) {
+		$('#headImg').val(obj.headImg);
+	    }
+	    h += '<li>' + '          <div class="liLeft">' + '<img src="' + obj.headImg + '">' + '  </div>'
+		    + '  <div class="liRight">' + '      <span class="intername">' + obj.username + '</span>'
+		    + '      <span class="infor">厉害了</span>' + '  </div>' + '</li>';
+	});
+	$('.conLeft ul').html("").append(h);
+    });
+}
+
+function refresh(data, msg) {
+}
+
+$('.sendBtn').on(
+	'click',
+	function() {
+	    var news = $('#dope').val();
+	    if (news == '') {
+		alert('不能为空');
+	    } else {
+		$('#dope').val('');
+		var str = '';
+		str += '<li>' + '<div class="nesHead"><img src="' + $('#headImg').val() + '"/></div>'
+			+ '<div class="news">' + news + '</div>' + '</li>';
+		$('.newsList').append(str);
+		websocket.send(str);
+		// $('.conLeft').find('li.bg').children('.liRight').children('.infor').text(news);
+		// $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
 	    }
 	    userList += '<li>' + '          <div class="liLeft">' + '<img src="' + obj.headImg + '">' + '  </div>'
 		    + '  <div class="liRight">' + '      <span class="intername">' + obj.username + '</span>'
@@ -98,6 +132,7 @@ function initUsers() {
 	$('.conLeft ul').html("<br/>").append(userList);
     });
 }
+
 
 function refresh(data, msg) {
 }
